@@ -1,0 +1,268 @@
+// DCJ 任务管理系统 - 设计变量
+// 基于设计文档的颜色和样式定义
+
+// ==================== 颜色系统 ====================
+
+// 主要背景色系 - 夜青色系
+$color-bg-primary: rgb(8, 79, 108);          // 主背景色
+$color-bg-secondary: rgb(12, 95, 130);       // 次要背景色
+$color-bg-tertiary: rgb(16, 111, 152);       // 第三背景色
+$color-bg-dark: rgb(4, 63, 86);              // 深色背景
+
+// 主要组件色系 - 白玉色系
+$color-component-primary: rgb(187, 255, 224); // 主组件色
+$color-component-secondary: rgb(167, 235, 204); // 次要组件色
+$color-component-tertiary: rgb(147, 215, 184); // 第三组件色
+$color-component-light: rgb(207, 255, 244);   // 浅色组件
+
+// 文本颜色
+$color-text-primary: rgb(255, 255, 255);      // 主文本 - 纯白色
+$color-text-secondary: rgb(211, 211, 211);    // 次要文本 - 醒目灰白
+$color-text-muted: rgb(128, 128, 128);        // 暗淡文本 - 黯淡灰白
+$color-text-disabled: rgba(255, 255, 255, 0.3); // 禁用文本
+
+// 前缀文本颜色系统（游戏装备品质配色）
+$color-prefix-white: rgb(255, 255, 255);      // 纯白色 - 长度4
+$color-prefix-green: rgb(0, 255, 0);          // 绿色 - 长度8
+$color-prefix-blue: rgb(0, 149, 255);         // 蓝色 - 长度12
+$color-prefix-purple: rgb(200, 12, 200);      // 紫色 - 长度16
+$color-prefix-orange: rgb(255, 165, 0);       // 橙色 - 长度20
+$color-prefix-red: rgb(255, 0, 0);            // 红色 - 长度24
+
+// 时间文本颜色系统（植物生长过程配色）
+$color-time-tender: rgb(154, 255, 162);       // 嫩绿色 - 1s-1min
+$color-time-green-yellow: rgb(191, 255, 162); // 绿黄色 - 1min1s-3min
+$color-time-light-yellow: rgb(253, 249, 140); // 浅黄色 - 3min1s-6min
+$color-time-golden: rgb(255, 225, 160);       // 金黄色 - 6min1s+
+
+// 心流时钟特殊颜色
+$color-focus-clock: rgb(255, 0, 0);           // 心流计时器红色
+
+// 状态颜色
+$color-success: rgb(0, 255, 0);
+$color-warning: rgb(255, 165, 0);
+$color-error: rgb(255, 0, 0);
+$color-info: rgb(0, 149, 255);
+
+// ==================== 尺寸系统 ====================
+
+// 基础间距
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// 组件尺寸（基于设计文档的位置和尺寸信息）
+$component-height-standard: 30px;             // 标准组件高度
+$component-height-large: 34px;                // 大型组件高度
+$component-height-small: 24px;                // 小型组件高度
+
+// 标签尺寸
+$tag-primary-width: 30px;                     // 一级标签宽度
+$tag-primary-height: 30px;                    // 一级标签高度
+$tag-secondary-width: 50px;                   // 二级标签宽度
+$tag-secondary-height: 30px;                  // 二级标签高度
+
+// 按钮尺寸
+$button-standard-width: 50px;                 // 标准按钮宽度
+$button-standard-height: 30px;                // 标准按钮高度
+$button-small-width: 30px;                    // 小按钮宽度
+$button-expand-width: 17px;                   // 展开按钮宽度
+
+// 时钟组件尺寸
+$clock-width: 136px;                          // 时钟组件宽度
+$clock-height: 30px;                          // 时钟组件高度
+
+// 面板尺寸
+$warehouse-panel-width: 731px;                // 仓库面板宽度（展开状态）
+$warehouse-panel-collapsed-width: 67px;       // 仓库面板宽度（收起状态）
+$operation-panel-width: 1189px;               // 运转面板宽度（展开状态）
+$operation-panel-full-width: 1920px;          // 运转面板宽度（收起状态）
+
+// 滚动条尺寸
+$scrollbar-width: 16px;                       // 滚动条宽度
+
+// ==================== 字体系统 ====================
+
+$font-family-primary: 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+$font-family-mono: 'Consolas', 'Monaco', 'Courier New', monospace;
+
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-md: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// ==================== 边框和阴影 ====================
+
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+
+$border-width: 1px;
+$border-color: rgba(187, 255, 224, 0.2);
+$border-color-active: rgba(187, 255, 224, 0.5);
+
+$box-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+$box-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.2);
+$box-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.3);
+
+// ==================== 动画系统 ====================
+
+// 缓动曲线 - 慢-快-慢
+$ease-in-out-smooth: cubic-bezier(0.4, 0.0, 0.2, 1);
+$ease-in-out-natural: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+// 动画持续时间
+$duration-fast: 200ms;
+$duration-normal: 300ms;
+$duration-slow: 500ms;
+
+// 特殊动画（记录行新增的"嘭"效果）
+$animation-pop-scale: scale(1.05);
+$animation-pop-duration: 150ms;
+
+// ==================== Z-Index层级 ====================
+
+$z-index-dropdown: 1000;
+$z-index-sticky: 1010;
+$z-index-modal: 1020;
+$z-index-popover: 1030;
+$z-index-tooltip: 1040;
+
+// ==================== 布局系统 ====================
+
+// 页面总体尺寸
+$page-width: 1920px;
+$page-height: 1080px;
+
+// 面板间距
+$panel-gap: 10px;
+
+// 行间距
+$row-gap: 9px;                                // 存储行行间间距
+
+// ==================== 响应式断点 ====================
+
+$breakpoint-sm: 768px;
+$breakpoint-md: 1024px;
+$breakpoint-lg: 1280px;
+$breakpoint-xl: 1920px;
+
+// ==================== 混合器（Mixins）====================
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@mixin text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin component-base {
+  background: $color-bg-secondary;
+  border: $border-width solid $border-color;
+  border-radius: $border-radius-sm;
+  color: $color-text-primary;
+  font-family: $font-family-primary;
+}
+
+@mixin button-base {
+  @include component-base;
+  @include flex-center;
+  cursor: pointer;
+  transition: all $duration-fast $ease-in-out-smooth;
+  user-select: none;
+  
+  &:hover {
+    background: $color-component-secondary;
+    border-color: $border-color-active;
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(128, 128, 128, 0.3);
+      pointer-events: none;
+    }
+  }
+}
+
+@mixin record-row-animation {
+  animation: record-row-pop $animation-pop-duration $ease-in-out-smooth;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    border-radius: $border-radius-md;
+    animation: spark-effect $animation-pop-duration $ease-in-out-smooth;
+    pointer-events: none;
+  }
+}
+
+@keyframes record-row-pop {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: $animation-pop-scale;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes spark-effect {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}

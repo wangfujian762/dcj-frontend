@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DCJ 任务管理系统</title>
+    <meta name="description" content="DCJ 任务管理系统 - 高效管理，专注执行" />
+    
+    <!-- 预加载关键字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- 防止FOUC（无样式内容闪烁） -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: rgb(8, 79, 108);
+        color: rgb(255, 255, 255);
+        font-family: 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+        overflow: hidden;
+      }
+      
+      #app {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+      }
+      
+      /* 加载动画 */
+      .dcj-loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgb(8, 79, 108);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      
+      .dcj-loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(187, 255, 224, 0.3);
+        border-top: 3px solid rgb(187, 255, 224);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 初始加载动画 -->
+      <div class="dcj-loading">
+        <div class="dcj-loading-spinner"></div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

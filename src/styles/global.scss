@@ -1,0 +1,613 @@
+// DCJ 任务管理系统 - 全局样式
+@import './variables.scss';
+
+// ==================== 重置样式 ====================
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: $font-family-primary;
+  font-size: $font-size-md;
+  line-height: 1.5;
+  color: $color-text-primary;
+  background: $color-bg-primary;
+  user-select: none; // 防止意外选中
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+// ==================== 滚动条样式 ====================
+
+::-webkit-scrollbar {
+  width: $scrollbar-width;
+  height: $scrollbar-width;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-bg-dark;
+  border-radius: $border-radius-sm;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-component-tertiary;
+  border-radius: $border-radius-sm;
+  
+  &:hover {
+    background: $color-component-secondary;
+  }
+}
+
+::-webkit-scrollbar-corner {
+  background: $color-bg-dark;
+}
+
+// ==================== 基础组件样式 ====================
+
+.dcj-button {
+  @include button-base;
+  height: $button-standard-height;
+  min-width: $button-standard-width;
+  padding: 0 $spacing-sm;
+  border: none;
+  outline: none;
+  font-size: $font-size-sm;
+  
+  &--small {
+    width: $button-small-width;
+    height: $button-small-width;
+    min-width: unset;
+    padding: 0;
+  }
+  
+  &--expand {
+    width: $button-expand-width;
+    height: $component-height-standard;
+    min-width: unset;
+    padding: 0;
+  }
+}
+
+.dcj-tag {
+  @include flex-center;
+  @include component-base;
+  height: $tag-primary-height;
+  border-radius: $border-radius-md;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  
+  &--primary {
+    width: $tag-primary-width;
+    height: $tag-primary-height;
+  }
+  
+  &--secondary {
+    width: $tag-secondary-width;
+    height: $tag-secondary-height;
+  }
+}
+
+.dcj-input {
+  @include component-base;
+  height: $component-height-standard;
+  padding: 0 $spacing-sm;
+  border: $border-width solid $border-color;
+  outline: none;
+  background: $color-bg-secondary;
+  
+  &:focus {
+    border-color: $border-color-active;
+    background: $color-bg-tertiary;
+  }
+  
+  &::placeholder {
+    color: $color-text-muted;
+  }
+}
+
+.dcj-dropdown {
+  @include component-base;
+  position: absolute;
+  z-index: $z-index-dropdown;
+  box-shadow: $box-shadow-lg;
+  max-height: 300px;
+  overflow-y: auto;
+  
+  &__option {
+    @include flex-start;
+    height: $component-height-standard;
+    padding: 0 $spacing-sm;
+    cursor: pointer;
+    transition: background $duration-fast $ease-in-out-smooth;
+    
+    &:hover {
+      background: $color-component-secondary;
+    }
+    
+    &--selected {
+      background: $color-component-tertiary;
+    }
+    
+    &--disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// ==================== 布局组件样式 ====================
+
+.dcj-page {
+  width: $page-width;
+  height: $page-height;
+  display: flex;
+  background: $color-bg-primary;
+  overflow: hidden;
+}
+
+.dcj-panel {
+  @include component-base;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  
+  &--warehouse {
+    width: $warehouse-panel-width;
+    transition: width $duration-normal $ease-in-out-smooth;
+    
+    &.collapsed {
+      width: $warehouse-panel-collapsed-width;
+    }
+  }
+  
+  &--operation {
+    flex: 1;
+    min-width: 0; // 允许flex收缩
+  }
+}
+
+// ==================== 记录行样式 ====================
+
+.dcj-record-row {
+  @include flex-start;
+  height: $component-height-large;
+  padding: 0 $spacing-sm;
+  border-bottom: 1px solid rgba(187, 255, 224, 0.1);
+  gap: $spacing-sm;
+  
+  &--focus {
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      right: $spacing-md;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      gap: $spacing-xs;
+    }
+  }
+  
+  &--new {
+    @include record-row-animation;
+  }
+  
+  &__time {
+    width: $clock-width;
+    flex-shrink: 0;
+    font-family: $font-family-mono;
+    font-size: $font-size-sm;
+    
+    // 时间颜色根据时长动态设置
+    &--duration-short { color: $color-time-tender; }
+    &--duration-medium { color: $color-time-green-yellow; }
+    &--duration-long { color: $color-time-light-yellow; }
+    &--duration-very-long { color: $color-time-golden; }
+  }
+  
+  &__prefix {
+    flex-shrink: 0;
+    font-weight: $font-weight-bold;
+    white-space: nowrap;
+    
+    // 前缀颜色根据长度动态设置
+    &--length-4 { color: $color-prefix-white; }
+    &--length-8 { color: $color-prefix-green; }
+    &--length-12 { color: $color-prefix-blue; }
+    &--length-16 { color: $color-prefix-purple; }
+    &--length-20 { color: $color-prefix-orange; }
+    &--length-24 { color: $color-prefix-red; }
+  }
+  
+  &__business-type {
+    width: 50px;
+    flex-shrink: 0;
+    text-align: center;
+    font-size: $font-size-sm;
+  }
+  
+  &__tag-primary {
+    width: $tag-primary-width;
+    height: $tag-primary-height;
+    flex-shrink: 0;
+  }
+  
+  &__tag-secondary {
+    width: $tag-secondary-width;
+    height: $tag-secondary-height;
+    flex-shrink: 0;
+  }
+  
+  &__text {
+    flex: 1;
+    min-width: 0;
+    @include text-ellipsis;
+    user-select: text; // 允许选中复制
+    cursor: text;
+  }
+  
+  &__actions {
+    display: flex;
+    gap: $spacing-xs;
+    flex-shrink: 0;
+    
+    .dcj-button {
+      width: $button-standard-width;
+      height: $component-height-standard;
+    }
+  }
+}
+
+// ==================== 编辑行样式 ====================
+
+.dcj-edit-row {
+  @include flex-start;
+  height: $component-height-large;
+  padding: 0 $spacing-sm;
+  gap: $spacing-sm;
+  position: relative;
+  
+  &__clock {
+    width: $clock-width;
+    height: $clock-height;
+    flex-shrink: 0;
+    @include flex-center;
+    font-family: $font-family-mono;
+    font-size: $font-size-sm;
+    
+    &--realtime {
+      color: $color-text-primary;
+    }
+    
+    &--timer {
+      color: $color-text-primary;
+      
+      &.focus-mode {
+        color: $color-focus-clock;
+        font-weight: $font-weight-bold;
+      }
+    }
+  }
+  
+  &__prefix {
+    flex-shrink: 0;
+    font-weight: $font-weight-bold;
+    white-space: nowrap;
+  }
+  
+  &__business-type {
+    width: 50px;
+    height: $component-height-standard;
+    flex-shrink: 0;
+  }
+  
+  &__tag-primary {
+    width: $tag-primary-width;
+    height: $tag-primary-height;
+    flex-shrink: 0;
+  }
+  
+  &__tag-secondary {
+    width: $tag-secondary-width;
+    height: $tag-secondary-height;
+    flex-shrink: 0;
+    
+    &--hidden {
+      display: none;
+    }
+  }
+  
+  &__text-input {
+    flex: 1;
+    min-width: 0;
+    height: $component-height-standard;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: $color-text-primary;
+    font-size: $font-size-md;
+    
+    &:focus {
+      background: rgba(187, 255, 224, 0.1);
+    }
+  }
+  
+  &__operation-button {
+    position: absolute;
+    right: $spacing-md;
+    top: 50%;
+    transform: translateY(-50%);
+    width: $button-standard-width;
+    height: $component-height-standard;
+    z-index: 10;
+  }
+  
+  // 禁用状态的蒙版效果
+  &--disabled {
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(128, 128, 128, 0.3);
+      pointer-events: none;
+    }
+    
+    .dcj-button,
+    .dcj-input,
+    .dcj-tag {
+      pointer-events: none;
+    }
+  }
+}
+
+// ==================== 特殊编辑行样式 ====================
+
+.dcj-special-edit-row {
+  @include flex-start;
+  height: $component-height-large;
+  padding: 0 $spacing-sm;
+  gap: $spacing-sm;
+  border-top: 1px solid rgba(187, 255, 224, 0.1);
+  
+  &--flow {
+    background: rgba(0, 255, 0, 0.05);
+  }
+  
+  &--interrupt {
+    background: rgba(255, 165, 0, 0.05);
+  }
+  
+  &--error {
+    background: rgba(255, 0, 0, 0.05);
+  }
+  
+  &__clock {
+    width: $clock-width;
+    height: $clock-height;
+    flex-shrink: 0;
+    @include flex-center;
+    font-family: $font-family-mono;
+  }
+  
+  &__prefix {
+    flex-shrink: 0;
+    font-weight: $font-weight-bold;
+  }
+  
+  &__business-type {
+    width: 50px;
+    flex-shrink: 0;
+    text-align: center;
+    font-size: $font-size-sm;
+  }
+  
+  &__text {
+    flex: 1;
+    min-width: 0;
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    user-select: text;
+  }
+  
+  &__operation-button {
+    width: $button-standard-width;
+    height: $component-height-standard;
+    flex-shrink: 0;
+  }
+}
+
+// ==================== 仓库面板样式 ====================
+
+.dcj-warehouse-panel {
+  &__header {
+    @include flex-between;
+    height: 54px; // 21 + 33
+    padding: 0 $spacing-md;
+    border-bottom: 1px solid $border-color;
+  }
+  
+  &__edit-row {
+    height: 50px;
+    padding: 0 $spacing-md;
+    border-bottom: 1px solid $border-color;
+  }
+  
+  &__storage-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: $spacing-sm;
+  }
+}
+
+.dcj-storage-row {
+  @include flex-start;
+  height: 50px;
+  margin-bottom: $row-gap;
+  
+  &__indent {
+    flex-shrink: 0;
+    // 宽度由depth动态计算
+  }
+  
+  &__drag-handle {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    @include flex-center;
+    cursor: grab;
+    
+    &:active {
+      cursor: grabbing;
+    }
+  }
+  
+  &__expand-button {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    @include flex-center;
+    
+    &--hidden {
+      visibility: hidden;
+    }
+  }
+  
+  &__content {
+    @include flex-start;
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    gap: $spacing-sm;
+    
+    .dcj-tag {
+      flex-shrink: 0;
+    }
+    
+    .dcj-input {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .dcj-button {
+      width: 30px;
+      height: 30px;
+      flex-shrink: 0;
+    }
+  }
+}
+
+// ==================== 粘性滚动效果 ====================
+
+.dcj-sticky-row {
+  position: sticky;
+  top: 0;
+  z-index: $z-index-sticky;
+  background: $color-bg-primary;
+  border-bottom: 2px solid $color-component-primary;
+  
+  &--date {
+    // 日期记录行的粘性效果
+  }
+  
+  &--unfinished-task {
+    // 未完结任务记录行的粘性效果
+    top: 34px; // 在日期行下方
+  }
+}
+
+// ==================== 动画效果 ====================
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform $duration-normal $ease-in-out-smooth;
+}
+
+.slide-enter-from {
+  transform: translateX(-100%);
+}
+
+.slide-leave-to {
+  transform: translateX(-100%);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity $duration-fast $ease-in-out-smooth;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.pop-enter-active {
+  animation: pop-in $duration-fast $ease-in-out-smooth;
+}
+
+.pop-leave-active {
+  animation: pop-out $duration-fast $ease-in-out-smooth;
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pop-out {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+
+// ==================== 实用类 ====================
+
+.flex-center { @include flex-center; }
+.flex-between { @include flex-between; }
+.flex-start { @include flex-start; }
+.text-ellipsis { @include text-ellipsis; }
+
+.hidden { display: none !important; }
+.invisible { visibility: hidden !important; }
+.disabled { pointer-events: none !important; opacity: 0.5 !important; }
+
+// 文本选择类
+.selectable { user-select: text !important; }
+.unselectable { user-select: none !important; }
+
+// 间距类
+.m-xs { margin: $spacing-xs; }
+.m-sm { margin: $spacing-sm; }
+.m-md { margin: $spacing-md; }
+.m-lg { margin: $spacing-lg; }
+
+.p-xs { padding: $spacing-xs; }
+.p-sm { padding: $spacing-sm; }
+.p-md { padding: $spacing-md; }
+.p-lg { padding: $spacing-lg; }
