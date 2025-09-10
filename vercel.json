@@ -1,36 +1,31 @@
 {
-  "version": 2,
-  "name": "dcj-frontend",
-  "builds": [
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "rewrites": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
+      "source": "/api/(.*)",
+      "destination": "https://minstep.cn/api/$1"
     }
   ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "https://minstep.cn/api/$1",
-      "headers": {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-        "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Authorization"
-      }
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ],
-  "env": {
-    "VITE_API_BASE_URL": "https://minstep.cn/api/v1",
-    "VITE_APP_TITLE": "DCJ 任务管理系统",
-    "VITE_APP_VERSION": "1.0.0"
-  },
   "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "X-Requested-With, Content-Type, Authorization"
+        }
+      ]
+    },
     {
       "source": "/(.*)",
       "headers": [
@@ -48,5 +43,10 @@
         }
       ]
     }
-  ]
+  ],
+  "env": {
+    "VITE_API_BASE_URL": "https://minstep.cn/api/v1",
+    "VITE_APP_TITLE": "DCJ 任务管理系统",
+    "VITE_APP_VERSION": "1.0.0"
+  }
 }
