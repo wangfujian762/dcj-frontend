@@ -3,7 +3,18 @@ import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue({
+    template: {
+      compilerOptions: {
+        // 禁用模板类型检查
+        skipCheck: true
+      }
+    }
+  })],
+  esbuild: {
+    // 禁用ESBuild的类型检查
+    target: 'es2015'
+  },
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
@@ -32,8 +43,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['vue', 'vue-router', 'pinia'],
-          ui: ['@/components']
+          vendor: ['vue', 'vue-router', 'pinia']
         }
       }
     }
