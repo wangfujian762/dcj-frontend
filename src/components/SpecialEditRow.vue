@@ -71,7 +71,7 @@ const props = withDefaults(defineProps<Props>(), {
   timerRunning: false
 })
 
-const emit = defineEmits<Emits>()
+const _emit = defineEmits<Emits>()
 
 // 是否显示计时器
 const showTimer = computed(() => {

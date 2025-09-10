@@ -104,7 +104,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import type { WarehouseTask } from '@/types'
 import { 
   IconDragHandle, 

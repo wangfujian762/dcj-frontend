@@ -772,7 +772,7 @@ const getTimeColorClass = (duration?: number): string => {
 const getPrefixColorClass = (prefix: string, isFocus: boolean, isCompleted: boolean): string => {
   if (isFocus) {
     const length = prefix.length
-    const cycle = Math.floor((length - 4) / 4) % 6
+    const _cycle = Math.floor((length - 4) / 4) % 6
     const position = (length - 4) % 24
     
     if (position < 4) return 'dcj-prefix--white'

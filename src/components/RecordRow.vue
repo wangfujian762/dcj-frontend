@@ -108,7 +108,7 @@ const props = withDefaults(defineProps<Props>(), {
   isUnfinishedTaskRow: false
 })
 
-const emit = defineEmits<Emits>()
+const _emit = defineEmits<Emits>()
 
 const isNew = ref(false)
 

@@ -61,7 +61,7 @@ const prefixColorClass = computed(() => {
 
 // 根据长度获取颜色类（游戏装备品质配色）
 const getPrefixColorByLength = (length: number): string => {
-  const cycle = Math.floor((length - 4) / 4) % 6
+  const _cycle = Math.floor((length - 4) / 4) % 6
   const position = (length - 4) % 24
   
   if (position < 4) return 'dcj-prefix-text--white'      // 长度4: 纯白色

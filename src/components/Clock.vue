@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 
 interface Props {
   type: 'realtime' | 'timer'
@@ -29,7 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const currentTime = ref(new Date())
 const timerSeconds = ref(props.startTime)
-let intervalId: number | null = null
+let intervalId: NodeJS.Timeout | null = null
 
 // 格式化实时时钟显示
 const formatRealTime = (date: Date): string => {

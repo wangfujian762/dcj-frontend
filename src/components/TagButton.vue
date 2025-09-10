@@ -88,7 +88,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, nextTick } from 'vue'
+import { ref, computed, nextTick, onUnmounted } from 'vue'
 import type { DropdownOption } from '@/types'
 import { PRIMARY_TAG_ICONS } from '@/components/icons'
 

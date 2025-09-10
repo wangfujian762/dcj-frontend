@@ -48,6 +48,7 @@ export interface TaskRecord {
   id: string;
   taskId: string;
   recordSequence: number;
+  isFocus?: boolean;
   recordText: string;
   recordType: 'start' | 'progress' | 'complete' | 'archive' | 'terminate';
   timeText: string;
@@ -141,6 +142,9 @@ export interface SpecialEditRow {
   businessTypeText: string;
   operationText: string;
   isVisible: boolean;
+  isSecondState?: boolean;
+  timerStartTime?: string;
+  timerRunning?: boolean;
   createdAt: string;
 }
 
@@ -170,6 +174,7 @@ export interface DropdownOption {
   icon?: string;
   color?: string;
   disabled?: boolean;
+  customizable?: boolean;
 }
 
 export interface TagSelection {
@@ -202,6 +207,9 @@ export interface ApiResponse<T = any> {
 
 export interface PaginatedResponse<T> {
   items: T[];
+  archives?: T[];
+  tasks?: T[];
+  records?: T[];
   total: number;
   page: number;
   limit: number;
@@ -256,3 +264,18 @@ export interface TagState {
   businessTypes: string[];
   selectedTags: TagSelection;
 }
+
+// ==================== API 请求类型 ====================
+
+export interface CreateTaskOperationRequest {
+  operationType: 'start' | 'progress' | 'complete' | 'archive' | 'terminate';
+  taskText: string;
+  prefixText?: string;
+  primaryTag?: string;
+  secondaryTag?: string;
+  businessType?: string;
+}
+
+// ==================== Vue Ref 类型 ====================
+
+export type Ref<T> = import('vue').Ref<T>
