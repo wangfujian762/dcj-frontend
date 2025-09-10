@@ -29,5 +29,3 @@ else
     echo "3. Git 配置是否正确"
 fi
 
-
-
