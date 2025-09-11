@@ -3,8 +3,8 @@ import { createPinia } from 'pinia'
 import { createRouter, createWebHistory } from 'vue-router'
 
 import App from './App.vue'
-import LoginPage from './views/LoginPage.simple.vue'
-import MainPage from './views/MainPage.simple.vue'
+import LoginPage from './views/LoginPage.vue'
+import MainPage from './views/MainPage.vue'
 import ApiTestPage from './views/ApiTestPage.vue'
 
 // 导入全局样式
